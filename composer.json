@@ -1,21 +1,20 @@
 {
-    "name": "yiistack/_____",
+    "name": "yiistack/annotated",
     "type": "library",
-    "description": "_____",
+    "description": "annotated",
     "keywords": [
-        "_____"
+        "annotation"
     ],
-    "homepage": "https://www.yiiframework.com/",
     "license": "MIT",
     "support": {
-        "issues": "https://github.com/yiistack/_____/issues?state=open",
-        "forum": "https://www.yiiframework.com/forum/",
-        "wiki": "https://www.yiiframework.com/wiki/",
-        "irc": "irc://irc.freenode.net/yii",
-        "source": "https://github.com/yiistack/_____"
+        "issues": "https://github.com/yiistack/annotated/issues?state=open",
+        "wiki": "https://github.com/yiistack/annotated/wiki",
+        "source": "https://github.com/yiistack/annotated"
     },
     "require": {
-        "php": "^7.4"
+        "php": "^7.4",
+        "spiral/tokenizer": "^2.1",
+        "doctrine/annotations": "^1.7"
     },
     "require-dev": {
         "phpunit/phpunit": "^8.4",
@@ -23,17 +22,17 @@
     },
     "autoload": {
         "psr-4": {
-            "Yiistack\\_____\\": "src"
+            "Yiistack\\Annotated\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Yiistack\\_____\\Tests\\": "tests"
+            "Yiistack\\Annotated\\Tests\\": "tests"
         }
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "3.0.x-dev"
+            "dev-master": "1.0.x-dev"
         }
     },
     "scripts": {
