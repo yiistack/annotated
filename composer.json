@@ -17,6 +17,7 @@
         "doctrine/annotations": "^1.7"
     },
     "require-dev": {
+        "infection/infection": "^0.16.3",
         "phpunit/phpunit": "^8.4",
         "phan/phan": "^2.4"
     },
