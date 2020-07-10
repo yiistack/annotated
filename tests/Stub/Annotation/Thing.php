@@ -10,7 +10,7 @@ use Doctrine\Common\Annotations\Annotation\Target;
  * @Annotation
  * @Target({"CLASS", "METHOD", "PROPERTY"})
  */
-class Assert
+class Thing
 {
     public function __construct($values)
     {

@@ -4,23 +4,21 @@ declare(strict_types=1);
 
 namespace Yiistack\Annotated\Tests\Stub;
 
-use Yiistack\Annotated\Tests\Stub\Annotation\Assert;
+use Yiistack\Annotated\Tests\Stub\Annotation\Thing;
 
 /**
- * Class AnnotatedObject
- * @package Yiistack\Annotated\Tests\Stub
- * @Assert
+ * @Thing
  */
-class AnnotatedObject
+class TestClass
 {
     /**
-     * @Assert
+     * @Thing
      */
     public $foo;
 
     /**
      * @return null
-     * @Assert
+     * @Thing
      */
     public function bar()
     {

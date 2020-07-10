@@ -9,8 +9,8 @@ use Yiistack\Annotated\AnnotatedClass;
 use Yiistack\Annotated\AnnotatedMethod;
 use Yiistack\Annotated\AnnotatedProperty;
 use Yiistack\Annotated\AnnotationLoader;
-use Yiistack\Annotated\Tests\Stub\AnnotatedObject;
-use Yiistack\Annotated\Tests\Stub\Annotation\Assert;
+use Yiistack\Annotated\Tests\Stub\TestClass;
+use Yiistack\Annotated\Tests\Stub\Annotation\Thing;
 
 class AnnotationLoaderTest extends TestCase
 {
@@ -18,8 +18,8 @@ class AnnotationLoaderTest extends TestCase
     public function testFindProperties()
     {
         $properties = $this->getAnnotationLoader()
-            ->withTargets([AnnotatedObject::class])
-            ->findProperties(Assert::class);
+            ->withTargets([TestClass::class])
+            ->findProperties(Thing::class);
 
         $properties = iterator_to_array($properties);
 
@@ -30,8 +30,8 @@ class AnnotationLoaderTest extends TestCase
     public function testFindClasses()
     {
         $classes = $this->getAnnotationLoader()
-            ->withTargets([AnnotatedObject::class])
-            ->findClasses(Assert::class);
+            ->withTargets([TestClass::class])
+            ->findClasses(Thing::class);
 
         $classes = iterator_to_array($classes);
 
@@ -42,8 +42,8 @@ class AnnotationLoaderTest extends TestCase
     public function testFindMethods()
     {
         $methods = $this->getAnnotationLoader()
-            ->withTargets([AnnotatedObject::class])
-            ->findMethods(Assert::class);
+            ->withTargets([TestClass::class])
+            ->findMethods(Thing::class);
 
         $methods = iterator_to_array($methods);
 

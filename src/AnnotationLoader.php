@@ -11,9 +11,7 @@ use Spiral\Tokenizer\ClassesInterface;
 class AnnotationLoader
 {
     private ClassesInterface $classLocator;
-
     private AnnotationReader $reader;
-
     private array $targets = [];
 
     public function __construct(ClassesInterface $classLocator, AnnotationReader $reader = null)
@@ -32,7 +30,6 @@ class AnnotationLoader
 
     /**
      * Find all classes with given annotation.
-     *
      * @param string $annotation
      * @return iterable|AnnotatedClass[]
      */
@@ -48,7 +45,6 @@ class AnnotationLoader
 
     /**
      * Find all methods with given annotation.
-     *
      * @param string $annotation
      * @return iterable|AnnotatedMethod[]
      */
@@ -66,7 +62,6 @@ class AnnotationLoader
 
     /**
      * Find all properties with given annotation.
-     *
      * @param string $annotation
      * @return iterable|AnnotatedProperty[]
      */
