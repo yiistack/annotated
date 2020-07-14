@@ -11,8 +11,10 @@
         "wiki": "https://github.com/yiistack/annotated/wiki",
         "source": "https://github.com/yiistack/annotated"
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "require": {
-        "php": "^7.4",
+        "php": "^7.4|^8.0",
         "spiral/tokenizer": "^2.1",
         "doctrine/annotations": "^1.7"
     },
