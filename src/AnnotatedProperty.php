@@ -23,6 +23,11 @@ final class AnnotatedProperty
         return $this->property->getDeclaringClass();
     }
 
+    public function getProperty(): ReflectionProperty
+    {
+        return $this->property;
+    }
+
     public function getAnnotation()
     {
         return $this->annotation;

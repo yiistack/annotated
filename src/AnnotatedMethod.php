@@ -23,6 +23,11 @@ final class AnnotatedMethod
         return $this->method->getDeclaringClass();
     }
 
+    public function getMethod(): ReflectionMethod
+    {
+        return $this->method;
+    }
+
     public function getAnnotation()
     {
         return $this->annotation;
