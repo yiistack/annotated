@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Yiistack\Annotated;
 
 use Doctrine\Common\Annotations\AnnotationReader;
+use Generator;
 use ReflectionClass;
 use Spiral\Tokenizer\ClassesInterface;
 
@@ -31,9 +32,9 @@ class AnnotationLoader
     /**
      * Find all classes with given annotation.
      * @param string $annotation
-     * @return iterable|AnnotatedClass[]
+     * @return Generator
      */
-    public function findClasses(string $annotation): iterable
+    public function findClasses(string $annotation): Generator
     {
         foreach ($this->getTargets() as $target) {
             $found = $this->reader->getClassAnnotation($target, $annotation);
@@ -46,9 +47,9 @@ class AnnotationLoader
     /**
      * Find all methods with given annotation.
      * @param string $annotation
-     * @return iterable|AnnotatedMethod[]
+     * @return Generator
      */
-    public function findMethods(string $annotation): iterable
+    public function findMethods(string $annotation): Generator
     {
         foreach ($this->getTargets() as $target) {
             foreach ($target->getMethods() as $method) {
@@ -63,9 +64,9 @@ class AnnotationLoader
     /**
      * Find all properties with given annotation.
      * @param string $annotation
-     * @return iterable|AnnotatedProperty[]
+     * @return Generator
      */
-    public function findProperties(string $annotation): iterable
+    public function findProperties(string $annotation): Generator
     {
         foreach ($this->getTargets() as $target) {
             foreach ($target->getProperties() as $property) {
@@ -78,9 +79,9 @@ class AnnotationLoader
     }
 
     /**
-     * @return iterable|ReflectionClass[]
+     * @return Generator
      */
-    private function getTargets(): iterable
+    private function getTargets(): Generator
     {
         if ($this->targets === []) {
             yield from $this->classLocator->getClasses();
