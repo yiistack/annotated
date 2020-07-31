@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yiistack\Annotated\Tests;
 
 use PHPUnit\Framework\TestCase;
