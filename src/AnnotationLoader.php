@@ -32,7 +32,7 @@ class AnnotationLoader
     /**
      * Find all classes with given annotation.
      * @param string $annotation
-     * @return Generator
+     * @return AnnotatedClass[]|Generator
      */
     public function findClasses(string $annotation): Generator
     {
@@ -47,7 +47,7 @@ class AnnotationLoader
     /**
      * Find all methods with given annotation.
      * @param string $annotation
-     * @return Generator
+     * @return AnnotatedMethod[]|Generator
      */
     public function findMethods(string $annotation): Generator
     {
@@ -64,7 +64,7 @@ class AnnotationLoader
     /**
      * Find all properties with given annotation.
      * @param string $annotation
-     * @return Generator
+     * @return AnnotatedProperty[]|Generator
      */
     public function findProperties(string $annotation): Generator
     {
@@ -79,7 +79,7 @@ class AnnotationLoader
     }
 
     /**
-     * @return Generator
+     * @return array|ReflectionClass[]|Generator
      */
     private function getTargets(): Generator
     {
