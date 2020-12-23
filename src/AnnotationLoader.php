@@ -7,6 +7,8 @@ namespace Yiistack\Annotated;
 use Doctrine\Common\Annotations\AnnotationReader;
 use Generator;
 use ReflectionClass;
+use ReflectionMethod;
+use ReflectionProperty;
 use Spiral\Tokenizer\ClassesInterface;
 
 final class AnnotationLoader
@@ -31,8 +33,13 @@ final class AnnotationLoader
 
     /**
      * Find all classes with given annotation.
+     *
      * @param string $annotation
-     * @return AnnotatedClass[]|Generator
+     *
+     * @psalm-suppress ArgumentTypeCoercion
+     * @psalm-return Generator
+     *
+     * @return ReflectionClass[]|Generator
      */
     public function findClasses(string $annotation): Generator
     {
@@ -50,7 +57,10 @@ final class AnnotationLoader
      * @param string $annotation
      * @param ReflectionClass|null $class
      *
-     * @return AnnotatedMethod[]|Generator
+     * @psalm-suppress ArgumentTypeCoercion
+     * @psalm-return Generator
+     *
+     * @return ReflectionMethod[]|Generator
      */
     public function findMethods(string $annotation, ?ReflectionClass $class = null): Generator
     {
@@ -79,13 +89,16 @@ final class AnnotationLoader
      * @param string $annotation
      * @param ReflectionClass|null $class
      *
-     * @return AnnotatedProperty[]|Generator
+     * @psalm-suppress ArgumentTypeCoercion
+     * @psalm-return Generator
+     *
+     * @return ReflectionProperty[]|Generator
      */
     public function findProperties(string $annotation, ?ReflectionClass $class = null): Generator
     {
         if ($class !== null) {
             foreach ($class->getProperties() as $property) {
-                $found = $this->reader->getMethodAnnotation($property, $annotation);
+                $found = $this->reader->getPropertyAnnotation($property, $annotation);
                 if ($found !== null) {
                     yield new AnnotatedProperty($property, $found);
                 }
@@ -102,9 +115,6 @@ final class AnnotationLoader
         }
     }
 
-    /**
-     * @return array|ReflectionClass[]|Generator
-     */
     private function getTargets(): Generator
     {
         if ($this->targets === []) {

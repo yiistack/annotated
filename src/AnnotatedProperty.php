@@ -12,7 +12,7 @@ final class AnnotatedProperty
     private ReflectionProperty $property;
     private object $annotation;
 
-    public function __construct(ReflectionProperty $property, $annotation)
+    public function __construct(ReflectionProperty $property, object $annotation)
     {
         $this->property = $property;
         $this->annotation = $annotation;

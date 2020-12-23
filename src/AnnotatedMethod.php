@@ -12,7 +12,7 @@ final class AnnotatedMethod
     private ReflectionMethod $method;
     private object $annotation;
 
-    public function __construct(ReflectionMethod $method, $annotation)
+    public function __construct(ReflectionMethod $method, object $annotation)
     {
         $this->method = $method;
         $this->annotation = $annotation;
