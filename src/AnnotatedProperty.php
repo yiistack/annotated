@@ -10,7 +10,7 @@ use ReflectionProperty;
 final class AnnotatedProperty
 {
     private ReflectionProperty $property;
-    private $annotation;
+    private object $annotation;
 
     public function __construct(ReflectionProperty $property, $annotation)
     {
@@ -28,7 +28,7 @@ final class AnnotatedProperty
         return $this->property;
     }
 
-    public function getAnnotation()
+    public function getAnnotation(): object
     {
         return $this->annotation;
     }

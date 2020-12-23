@@ -9,7 +9,7 @@ use Generator;
 use ReflectionClass;
 use Spiral\Tokenizer\ClassesInterface;
 
-class AnnotationLoader
+final class AnnotationLoader
 {
     private ClassesInterface $classLocator;
     private AnnotationReader $reader;
@@ -46,11 +46,23 @@ class AnnotationLoader
 
     /**
      * Find all methods with given annotation.
+     *
      * @param string $annotation
+     * @param ReflectionClass|null $class
+     *
      * @return AnnotatedMethod[]|Generator
      */
-    public function findMethods(string $annotation): Generator
+    public function findMethods(string $annotation, ?ReflectionClass $class = null): Generator
     {
+        if ($class !== null) {
+            foreach ($class->getMethods() as $method) {
+                $found = $this->reader->getMethodAnnotation($method, $annotation);
+                if ($found !== null) {
+                    yield new AnnotatedMethod($method, $found);
+                }
+            }
+            return;
+        }
         foreach ($this->getTargets() as $target) {
             foreach ($target->getMethods() as $method) {
                 $found = $this->reader->getMethodAnnotation($method, $annotation);
@@ -63,11 +75,23 @@ class AnnotationLoader
 
     /**
      * Find all properties with given annotation.
+     *
      * @param string $annotation
+     * @param ReflectionClass|null $class
+     *
      * @return AnnotatedProperty[]|Generator
      */
-    public function findProperties(string $annotation): Generator
+    public function findProperties(string $annotation, ?ReflectionClass $class = null): Generator
     {
+        if ($class !== null) {
+            foreach ($class->getProperties() as $property) {
+                $found = $this->reader->getMethodAnnotation($property, $annotation);
+                if ($found !== null) {
+                    yield new AnnotatedProperty($property, $found);
+                }
+            }
+            return;
+        }
         foreach ($this->getTargets() as $target) {
             foreach ($target->getProperties() as $property) {
                 $found = $this->reader->getPropertyAnnotation($property, $annotation);

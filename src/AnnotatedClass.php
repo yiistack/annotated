@@ -9,7 +9,7 @@ use ReflectionClass;
 final class AnnotatedClass
 {
     private ReflectionClass $class;
-    private $annotation;
+    private object $annotation;
 
     public function __construct(ReflectionClass $class, $annotation)
     {
@@ -22,7 +22,7 @@ final class AnnotatedClass
         return $this->class;
     }
 
-    public function getAnnotation()
+    public function getAnnotation(): object
     {
         return $this->annotation;
     }

@@ -10,7 +10,7 @@ use ReflectionMethod;
 final class AnnotatedMethod
 {
     private ReflectionMethod $method;
-    private $annotation;
+    private object $annotation;
 
     public function __construct(ReflectionMethod $method, $annotation)
     {
@@ -28,7 +28,7 @@ final class AnnotatedMethod
         return $this->method;
     }
 
-    public function getAnnotation()
+    public function getAnnotation():object
     {
         return $this->annotation;
     }
