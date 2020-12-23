@@ -52,7 +52,7 @@ jobs:
             php${{ matrix.php }}-composer-
 
       - name: Update composer
-        run: composer self-update
+        run: composer self-update --2
 
       - name: Install dependencies with composer php 7.4
         if: matrix.php == '7.4'
