@@ -9,12 +9,12 @@ use Yiistack\Annotated\Tests\Stub\Annotation\Thing;
 /**
  * @Thing
  */
-class TestClass
+final class TestClass
 {
     /**
      * @Thing
      */
-    public $foo;
+    public string $foo;
 
     /**
      * @return null
