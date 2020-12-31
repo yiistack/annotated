@@ -17,11 +17,12 @@ final class TestClass
     public string $foo;
 
     /**
-     * @return null
      * @Thing
+     *
+     * @return string
      */
-    public function bar()
+    public function bar(): string
     {
-        return null;
+        return 'test';
     }
 }
