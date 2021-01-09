@@ -18,6 +18,7 @@ final class TestClass
 
     /**
      * @Thing
+     * @Thing(name="Two")
      *
      * @return string
      */

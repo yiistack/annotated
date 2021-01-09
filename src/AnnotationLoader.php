@@ -7,8 +7,6 @@ namespace Yiistack\Annotated;
 use Doctrine\Common\Annotations\AnnotationReader;
 use Generator;
 use ReflectionClass;
-use ReflectionMethod;
-use ReflectionProperty;
 use Spiral\Tokenizer\ClassesInterface;
 
 final class AnnotationLoader
@@ -37,16 +35,26 @@ final class AnnotationLoader
      * @param string $annotation
      *
      * @psalm-suppress ArgumentTypeCoercion
-     * @psalm-return Generator
+     * @psalm-return Generator<AnnotatedClass>
      *
-     * @return ReflectionClass[]|Generator
+     * @return AnnotatedClass[]|Generator
      */
-    public function findClasses(string $annotation): Generator
+    public function findClasses(string $annotation, ?ReflectionClass $class = null): Generator
     {
+        if ($class !== null) {
+            $annotations = $this->reader->getClassAnnotations($class);
+            foreach ($annotations as $classAnnotation) {
+                if ($classAnnotation instanceof $annotation) {
+                    yield new AnnotatedClass($class, $classAnnotation);
+                }
+            }
+        }
         foreach ($this->getTargets() as $target) {
-            $found = $this->reader->getClassAnnotation($target, $annotation);
-            if ($found !== null) {
-                yield new AnnotatedClass($target, $found);
+            $annotations = $this->reader->getClassAnnotations($target);
+            foreach ($annotations as $classAnnotation) {
+                if ($classAnnotation instanceof $annotation) {
+                    yield new AnnotatedClass($target, $classAnnotation);
+                }
             }
         }
     }
@@ -58,26 +66,30 @@ final class AnnotationLoader
      * @param ReflectionClass|null $class
      *
      * @psalm-suppress ArgumentTypeCoercion
-     * @psalm-return Generator
+     * @psalm-return Generator<AnnotatedMethod>
      *
-     * @return ReflectionMethod[]|Generator
+     * @return AnnotatedMethod[]|Generator
      */
     public function findMethods(string $annotation, ?ReflectionClass $class = null): Generator
     {
         if ($class !== null) {
             foreach ($class->getMethods() as $method) {
-                $found = $this->reader->getMethodAnnotation($method, $annotation);
-                if ($found !== null) {
-                    yield new AnnotatedMethod($method, $found);
+                $annotations = $this->reader->getMethodAnnotations($method);
+                foreach ($annotations as $methodAnnotation) {
+                    if ($methodAnnotation instanceof $annotation) {
+                        yield new AnnotatedMethod($method, $methodAnnotation);
+                    }
                 }
             }
             return;
         }
         foreach ($this->getTargets() as $target) {
             foreach ($target->getMethods() as $method) {
-                $found = $this->reader->getMethodAnnotation($method, $annotation);
-                if ($found !== null) {
-                    yield new AnnotatedMethod($method, $found);
+                $annotations = $this->reader->getMethodAnnotations($method);
+                foreach ($annotations as $methodAnnotation) {
+                    if ($methodAnnotation instanceof $annotation) {
+                        yield new AnnotatedMethod($method, $methodAnnotation);
+                    }
                 }
             }
         }
@@ -90,26 +102,30 @@ final class AnnotationLoader
      * @param ReflectionClass|null $class
      *
      * @psalm-suppress ArgumentTypeCoercion
-     * @psalm-return Generator
+     * @psalm-return Generator<AnnotatedProperty>
      *
-     * @return ReflectionProperty[]|Generator
+     * @return AnnotatedProperty[]|Generator
      */
     public function findProperties(string $annotation, ?ReflectionClass $class = null): Generator
     {
         if ($class !== null) {
             foreach ($class->getProperties() as $property) {
-                $found = $this->reader->getPropertyAnnotation($property, $annotation);
-                if ($found !== null) {
-                    yield new AnnotatedProperty($property, $found);
+                $annotations = $this->reader->getPropertyAnnotations($property);
+                foreach ($annotations as $propertyAnnotation) {
+                    if ($propertyAnnotation instanceof $annotation) {
+                        yield new AnnotatedProperty($property, $propertyAnnotation);
+                    }
                 }
             }
             return;
         }
         foreach ($this->getTargets() as $target) {
             foreach ($target->getProperties() as $property) {
-                $found = $this->reader->getPropertyAnnotation($property, $annotation);
-                if ($found !== null) {
-                    yield new AnnotatedProperty($property, $found);
+                $annotations = $this->reader->getPropertyAnnotations($property);
+                foreach ($annotations as $propertyAnnotation) {
+                    if ($propertyAnnotation instanceof $annotation) {
+                        yield new AnnotatedProperty($property, $propertyAnnotation);
+                    }
                 }
             }
         }

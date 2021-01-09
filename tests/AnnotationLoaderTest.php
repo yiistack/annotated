@@ -61,7 +61,7 @@ class AnnotationLoaderTest extends TestCase
 
         $methods = iterator_to_array($methods);
 
-        $this->assertCount(1, $methods);
+        $this->assertCount(2, $methods);
         $this->assertContainsOnlyInstancesOf(AnnotatedMethod::class, $methods);
     }
 
@@ -72,7 +72,7 @@ class AnnotationLoaderTest extends TestCase
 
         $methods = iterator_to_array($methods);
 
-        $this->assertCount(1, $methods);
+        $this->assertCount(2, $methods);
         $this->assertContainsOnlyInstancesOf(AnnotatedMethod::class, $methods);
     }
 
